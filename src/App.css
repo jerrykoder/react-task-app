@@ -1,0 +1,11 @@
+.line {
+	text-decoration: line-through;
+}
+
+.active {
+	background-color: #ccc;
+}
+
+.btn-delete {
+	float: right;
+}
