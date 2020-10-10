@@ -9,3 +9,19 @@
 .btn-delete {
 	float: right;
 }
+
+.navbar {
+	margin-bottom: 30px;
+}
+
+.list-group-item span {
+	margin-left: 10px;
+}
+
+.list-group {
+	margin-bottom: 30px;
+}
+
+.btns-list button {
+	margin-right: 10px;
+}

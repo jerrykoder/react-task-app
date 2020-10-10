@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form,InputGroup, InputGroupAddon, Input } from 'reactstrap';
 
 class AddTodo extends Component {
 	state = {
 		name: ''
 	};
+
 
 	addTodoItem = e => {
 		e.preventDefault();
@@ -26,18 +27,19 @@ class AddTodo extends Component {
 		console.log(this.props);
 		return (
 			<Modal isOpen={this.props.modal}>
-				<ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+				<ModalHeader onClick={this.props.toggle}>Things to do!!</ModalHeader>
 				<ModalBody>
-					<form onSubmit={this.addTodoItem}>
-						<input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
-						<button type="submit">Add Todo</button>
-					</form>
+					<Form onSubmit={this.addTodoItem}>
+						<InputGroup>
+				        <Input type="text" name="name" onChange={this.handleChange} value={this.state.name}/>
+				        <InputGroupAddon addonType="append">
+				          <Button color="primary">Create Task</Button>
+				        </InputGroupAddon>
+				      </InputGroup>
+					</Form>
 				</ModalBody>
 				<ModalFooter>
-					<Button color="primary" onClick={this.toggle}>
-						Do Something
-					</Button>{' '}
-					<Button color="secondary" onClick={this.toggle}>
+					<Button color="danger" onClick={this.props.toggle}>
 						Cancel
 					</Button>
 				</ModalFooter>

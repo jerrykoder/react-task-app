@@ -7,7 +7,7 @@ import Todos from './Components/Todos';
 import AddTodo from './Components/AddTodo';
 import Navigation from './Components/Navigation';
 import About from './Components/About';
-import { Button, Container, Row, Col } from 'reactstrap';
+import { Button, Container, Row, Col, Alert } from 'reactstrap';
 
 const apiUrl = process.env.REACT_APP_API;
 
@@ -179,7 +179,10 @@ class App extends Component {
 									path="/"
 									render={props => (
 										<div>
-											<AddTodo addTodo={this.addTodo} modal={this.state.modal} />
+											<AddTodo addTodo={this.addTodo} modal={this.state.modal} toggle={this.toggle}/>
+											<Alert color="primary">
+											Remaining Todos: {this.remainingTodos()}
+											</Alert>
 											<Todos
 												changeTodo={this.changeTodo}
 												deleteTodo={this.deleteTodo}
@@ -189,33 +192,34 @@ class App extends Component {
 												filterTodos={this.filterTodos}
 												todos={this.state.todos}
 											/>
-											Remaining Todos: {this.remainingTodos()}
+											
+											<div className="btns-list">
 											{this.completedTodosCount() > 0 && (
-												<button onClick={this.clearCompletedTodos}>
+												<Button color="danger" onClick={this.clearCompletedTodos}>
 													Remove Completed Todos
-												</button>
+												</Button>
 											)}
-											<button
-												className={this.state.filter === 'all' ? 'active' : ''}
+											<Button
+												color="primary" className={this.state.filter === 'all' ? 'active' : ''}
 												onClick={() => this.updateFilterTodos('all')}
 											>
 												All
-											</button>
-											<button
+											</Button>
+											<Button color="success"
 												className={this.state.filter === 'active' ? 'active' : ''}
 												onClick={() => this.updateFilterTodos('active')}
 											>
 												Active
-											</button>
-											<button
+											</Button>
+											<Button color="success"
 												className={this.state.filter === 'completed' ? 'active' : ''}
 												onClick={() => this.updateFilterTodos('completed')}
 											>
 												Completed
-											</button>
-											<Button color="danger" onClick={this.toggle}>
-												Open Modal
 											</Button>
+											<Button color="primary" onClick={this.toggle}>
+												+
+											</Button></div>
 										</div>
 									)}
 								/>
